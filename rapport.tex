@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[frenchb]{babel}
 \usepackage[T1]{fontenc}
+\usepackage{graphicx}
 
 \author{Benjamain André\\Alexis Lecocp\\Arnaud Collin\\Waelkens Dimitri}
 
@@ -11,6 +12,8 @@
 \Rapport (3 pages max.) contenant les éléments suivants:
 
 \section{Description de votre Bunsiness Unit}
+
+\includegraphics[scale=0.2]{image.png}
 
 \section{Justification des choix liés à la configuration intra--domaine / inter-domaine (adressage, interfaces..)}
 
@@ -60,14 +63,14 @@ end
 \section{Problèmes rencontrés}
 
 Tout dabord, nous avons eu un souci lors de la mise en place du service DHCP. Nous avons testés
-plusieurs fois les commandes fournies dans l'énoncé mais sans succès.Nous avons dû regadrer dans 
+plusieurs fois les commandes fournies dans l'énoncé mais sans succès.Nous avons dû regadrer dans
 la documentation de Cisco (disponible en ligne) afin de trouver une autre solution.
 
 En testant les différentes solutions proposées, nous avons fini par remarquer que le routeur
 ne reconnaissait pas certaines commandes. Nous avons donc supposé que le problème venait de celui-ci
 et nous l'avons réinitialisé.
 
-Après la réinitialisation du routeur, nous avons remis en place le service DHCP de façon similaire 
+Après la réinitialisation du routeur, nous avons remis en place le service DHCP de façon similaire
 à la configuration effectuée à la base. Plus aucun souci constaté, le service fournissant des adresses
 aux machines faisant la demande (effectué automatiquement lorsque celle-ci n'a pas d'adresse physique et se connecte à notre domaine).
 \section{Erreurs connues dans votre configuration}
