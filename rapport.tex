@@ -25,12 +25,12 @@
 %------------- MY ENVS --------%
 \newcounter{note}[section]
 \newenvironment{note}[1][]
-{	
-	
+{
+
 	\refstepcounter{note}
-	
-	
-	
+
+
+
 	\begin{center}
 		\begin{tcolorbox}[note]
 			\textbf{\textcolor{lime!30!black}{Note \arabic{section}.\arabic{note}}} :
@@ -38,7 +38,7 @@
 			}
 			{
 			\end{em}
-		\end{tcolorbox}	
+		\end{tcolorbox}
 	\end{center}
 }
 
@@ -46,30 +46,30 @@
 
 \newcounter{question}[section]
 \newenvironment{question}[1][]
-{	
-	
+{
+
 	\refstepcounter{question}
-	
-	
-	
+
+
+
 	\begin{center}
 		\begin{tcolorbox}[question]
 			\textbf{\textcolor{teal}{Question \arabic{section}.\arabic{question}}} :
 		}
 		{
-		\end{tcolorbox}	
+		\end{tcolorbox}
 	\end{center}
 }
 
 
 \newcounter{attention}[section]
 \newenvironment{attention}[1][]
-{	
-	
+{
+
 	\refstepcounter{attention}
-	
-	
-	
+
+
+
 	\begin{center}
 		\begin{tcolorbox}[attention]
 			\textbf{\textcolor{red}{Attention \arabic{section}.\arabic{attention}}} :
@@ -77,7 +77,7 @@
 			}
 			{
 			\end{bf}
-		\end{tcolorbox}	
+		\end{tcolorbox}
 	\end{center}
 }
 
@@ -95,6 +95,9 @@
 \section{Description de votre Bunsiness Unit}
 
 \includegraphics[scale=0.2]{image.png}
+
+Lors de ce TP, nous devions configuré le Business Units, composé des routeurs sept et deux, ainsi que le VLan deux. Nous avions effectué les liens en suivant le schéma ci-dessus.
+Nous avions décidé de prendre le sous-réseaux 10.2.0.0/30. Ce sous-réseaux contient 8 adresses.
 
 \section{Justification des choix liés à la configuration intra--domaine / inter-domaine (adressage, interfaces..)}
 
