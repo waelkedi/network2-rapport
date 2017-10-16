@@ -91,15 +91,19 @@
 \maketitle
 
 \section{Introduction}%rappel vite fait de l'énoncé et explication sommaire du rapport
+Dans la figure du point suivant, nous administrions R7, R2, le VLAN2. Nous avions les adresses 10.2.0.0/16. Il nous fallait instaurer un protocole de routage intra et inter-domaine.
+Dans les points suivants, nous allons expliquer, notre démarche, les difficultés rencontrée, notre résultat final et les conclusions que l'on peut tirer de cet exercice.
 
 \section{Description de votre Bunsiness Unit}
 
-\includegraphics[scale=0.2]{image.png}
+\includegraphics[scale=0.2]{image2.png}
 
 Lors de ce TP, nous devions configuré le Business Units, composé des routeurs sept et deux, ainsi que le VLan deux. Nous avions effectué les liens en suivant le schéma ci-dessus.
-Nous avions décidé de prendre le sous-réseaux 10.2.0.0/30. Ce sous-réseaux contient 8 adresses.
+
 
 \section{Justification des choix liés à la configuration intra--domaine / inter-domaine (adressage, interfaces..)}
+Nous avions décidé de prendre des sous-réseaux de masque 255.255.255.252. Ce sous-réseaux contient 4 adresses. Une pour chaque interface, et celle en .0 pour identifier le sous-réseau.
+Nous avions commencé par donner du /24 à tout va, mais un tel gaspillage d'adresse n'est pas correct. De toute façon, sur un lien, au plus deux interfaces seront connectées (entre nos routeurs)
 
 \section{Log des commandes utilisées sur vos routeurs Cisco}
 
@@ -157,11 +161,11 @@ et nous l'avons réinitialisé.
 Après la réinitialisation du routeur, nous avons remis en place le service DHCP de façon similaire
 à la configuration effectuée à la base. Plus aucun souci constaté, le service fournissant des adresses
 aux machines faisant la demande (effectué automatiquement lorsque celle-ci n'a pas d'adresse physique et se connecte à notre domaine).
-\section{Erreurs connues dans votre configuration}
+
 
 \section{Connexion entre différents groupes}
 
-Certains liens devaient être administrés par différents groupes. Il a été nécessaire de les contacter pour connaître les conventions qu'ils utilisaient pour configurer les routers. Dès lors, nos routers ont été configuré de la sorte que ceux en bordure de notre réseau servent de passerelle vers les préfixes des autres groupes.
+Certains liens devaient être administrés par différents groupes. Il a été nécessaire de les contacter pour connaître les conventions qu'ils utilisaient pour configurer les routeurs. Dès lors, nos routeurs ont été configuré de la sorte que ceux en bordure de notre réseau servent de passerelle vers les préfixes des autres groupes.
 
 Des liens statiques vers leurs \emph{range} d'IP ont donc été établis.
 
