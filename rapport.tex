@@ -1,15 +1,96 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[frenchb]{babel}
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+\tcbuselibrary{skins}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 
-\author{Benjamain André\\Alexis Lecocp\\Arnaud Collin\\Waelkens Dimitri}
+
+
+%------------ NICE TABS ----------%
+\tcbset{note/.style={enhanced,fonttitle=\bfseries,fontupper=\normalsize\sffamily,
+		colback=lime!20!white,colframe=lime!50!black}}
+
+\tcbset{question/.style={enhanced,fonttitle=\bfseries,fontupper=\normalsize\sffamily,
+		colback=teal!20!white,colframe=teal!50!black}}
+
+\tcbset{attention/.style={enhanced,fonttitle=\bfseries,fontupper=\normalsize\sffamily,
+		colback=red!20!white,colframe=red!50!black}}
+
+
+%------------- MY ENVS --------%
+\newcounter{note}[section]
+\newenvironment{note}[1][]
+{	
+	
+	\refstepcounter{note}
+	
+	
+	
+	\begin{center}
+		\begin{tcolorbox}[note]
+			\textbf{\textcolor{lime!30!black}{Note \arabic{section}.\arabic{note}}} :
+			\begin{em}
+			}
+			{
+			\end{em}
+		\end{tcolorbox}	
+	\end{center}
+}
+
+
+
+\newcounter{question}[section]
+\newenvironment{question}[1][]
+{	
+	
+	\refstepcounter{question}
+	
+	
+	
+	\begin{center}
+		\begin{tcolorbox}[question]
+			\textbf{\textcolor{teal}{Question \arabic{section}.\arabic{question}}} :
+		}
+		{
+		\end{tcolorbox}	
+	\end{center}
+}
+
+
+\newcounter{attention}[section]
+\newenvironment{attention}[1][]
+{	
+	
+	\refstepcounter{attention}
+	
+	
+	
+	\begin{center}
+		\begin{tcolorbox}[attention]
+			\textbf{\textcolor{red}{Attention \arabic{section}.\arabic{attention}}} :
+			\begin{bf}
+			}
+			{
+			\end{bf}
+		\end{tcolorbox}	
+	\end{center}
+}
+
+\author{Benjamin André\\Alexis Lecocq\\Arnaud Collin\\Waelkens Dimitri}
+\title{Rapport de TP : CISCO}
+
+
 
 \begin{document}
 
+\maketitle
 
-\Rapport (3 pages max.) contenant les éléments suivants:
+\section{Introduction}%rappel vite fait de l'énoncé et explication sommaire du rapport
 
 \section{Description de votre Bunsiness Unit}
 
@@ -19,7 +100,7 @@
 
 \section{Log des commandes utilisées sur vos routeurs Cisco}
 
-R2#show running-config
+R2\#show running-config
 Building configuration...
 
 Current configuration : 612 bytes
@@ -74,5 +155,26 @@ Après la réinitialisation du routeur, nous avons remis en place le service DHC
 à la configuration effectuée à la base. Plus aucun souci constaté, le service fournissant des adresses
 aux machines faisant la demande (effectué automatiquement lorsque celle-ci n'a pas d'adresse physique et se connecte à notre domaine).
 \section{Erreurs connues dans votre configuration}
+
+\section{Connexion entre différents groupes}
+
+Certains liens devaient être administrés par différents groupes. Il a été nécessaire de les contacter pour connaître les conventions qu'ils utilisaient pour configurer les routers. Dès lors, nos routers ont été configuré de la sorte que ceux en bordure de notre réseau servent de passerelle vers les préfixes des autres groupes.
+
+Des liens statiques vers leurs \emph{range} d'IP ont donc été établis.
+
+\begin{question}
+	Le résultat fut-il au rendez-vous ?
+\end{question}
+
+\noindent\includegraphics[width=\linewidth]{serialup}\\
+
+Dans l'extrait de la console CISCO ci-dessus, on peut voir que notre interface seriel 0/1 est active, mais que le protocole ne l'est pas. Ceci s'explique dans ce cas-ci par le fait qu'il n'y avait aucune interface active à l'autre bout du câble.
+
+Pouvoir s'y connecter aurait été une première étape vers le partage de routes, et donc le routage selon la topologie proposée dans l'énoncé.
+
+\section{Conclusion}
+Le routage est plus compliqué en pratique car il faut maîtriser un langage de configuration et des outils en plus de la théorie. C'est une phase de la conception d'un réseau à ne pas négliger. En effet, nous n'avons pas réussi à atteindre les objectifs dans le temps imparti pour ce TP.
+
+
 
 \end{document}
