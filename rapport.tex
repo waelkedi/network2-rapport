@@ -8,17 +8,59 @@
 \begin{document}
 
 
-\\Rapport (3 pages max.) contenant les éléments suivants:
+\Rapport (3 pages max.) contenant les éléments suivants:
 
-\\Description de votre Bunsiness Unit
+\section{Description de votre Bunsiness Unit}
 
-\\Justification des choix liés à la configuration intra--domaine / inter-domaine (adressage, interfaces..)
+\section{Justification des choix liés à la configuration intra--domaine / inter-domaine (adressage, interfaces..)}
 
-\\Log des commandes utilisées sur vos routeurs Cisco
+\section{Log des commandes utilisées sur vos routeurs Cisco}
 
-\\Problèmes rencontrés
+R2#show running-config
+Building configuration...
 
-\\Erreurs connues dans votre configuration
+Current configuration : 612 bytes
 
+version 12.2
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+
+hostname R2
+
+memory-size iomem 30
+ip subnet-zero
+
+ip dhcp database VLAN2
+
+ip dhcp pool VLAN2
+   network 10.2.1.0 255.255.255.0
+   dns-server 8.8.8.8
+   default-router 10.2.1.1
+
+interface Ethernet0/0
+ ip address 10.2.0.2 255.255.255.252
+ half-duplex
+
+interface Ethernet0/1
+ ip address 10.2.1.1 255.255.255.0
+ half-duplex
+
+ip classless
+ip route 10.2.0.0 255.255.255.252 10.2.0.1
+ip route 10.2.0.0 255.255.255.252 Ethernet0/0
+ip http server
+
+line con 0
+line aux 0
+line vty 0 4
+
+end
+
+\section{Problèmes rencontrés}
+
+Nous avions eu un premier problème lors de la mise en place du service DHCP. Nous avions testé plusieurs fois les commandes proposer dans l'énoncer du devoir sans succès. Ensuite, nous avions regardé dans la documentation CISCO en ligne qui proposait d'autres solutions.
+En testant ces différentes solutions, nous avions remarqué que le router nous proposer des commandes (commande ?) qui ne reconnaisé pas. Nous avions supposés que le problème provenait du routeur et nous l'avions donc réinitialisé.Après avoir réinitialisé le routeur, nous avions mis en place le service DHCP avec les commandes proposer dans l'énoncer du devoir avec succès lors de la première tentative.
+\section{Erreurs connues dans votre configuration}
 
 \end{document}
