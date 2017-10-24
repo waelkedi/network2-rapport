@@ -1,4 +1,4 @@
-print 'START\n'
+print 'Running config.cbgp\n'
 
 print 'iCompany 2.1/16 ASN200\n'
 print 'igp with one router to add router easily\n'

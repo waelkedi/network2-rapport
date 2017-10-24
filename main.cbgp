@@ -1,0 +1,2 @@
+print 'Running main.cbgp\n'
+include config.cbgp
