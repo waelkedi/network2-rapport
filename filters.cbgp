@@ -2,6 +2,7 @@
 #1 peer
 #2 provider
 
+print 'Running filters.cbgp\n'
 
 print 'Configuring BELNET\n'
 

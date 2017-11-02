@@ -1,0 +1,19 @@
+print 'Running interroutes.cbgp\n'
+
+net add link 2.1.0.1 2.0.0.1
+print 'ALL LINKS'
+
+
+
+net node 2.1.0.1 route add --oif=2.0.0.1 2.0.0.0/8  2
+bgp router 2.1.0.1
+	add peer 2 2.0.0.1
+	peer 2.0.0.1 up
+	exit
+
+net node 2.0.0.1 route add --oif=2.1.0.1 2.1/16  2
+bgp router 2.0.0.1
+	add peer 200 2.1.0.1
+	peer 2.1.0.1 up
+	exit
+print 'FOR ALL ROUTERS'
