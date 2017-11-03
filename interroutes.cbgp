@@ -159,13 +159,20 @@ print 'GEANT and BELNET,'
 net node 4.0.0.3 route add --oif=1.1.0.1 1.1.0.0/24 5
 net node 4.0.0.3 route add --oif=1.1.0.1 4.1.0.0/24 5
 bgp router 4.0.0.3
-	add peer N 1.1.0.1
+	add peer 2611 1.1.0.1
 	peer 1.1.0.1 up
 	exit
 net node 4.0.0.4 route add --oif=1.1.0.2 4.1.0.0/24 5
 bgp router 4.0.0.4
-	add peer N 1.1.0.2
+	add peer 2611 1.1.0.2
 	peer 1.1.0.2 up
+	exit
+
+
+net node 1.1.0.1 route add --oif=4.0.0.3 4.0.0.0/24 5
+bgp router 1.1.0.1
+	add peer 20965 4.0.0.3
+	peer 4.0.0.3 up
 	exit
 
 print 'BELNET and UCL,'
