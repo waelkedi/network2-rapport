@@ -1,2 +1,7 @@
+# python
 *.pyc
 
+# latex
+*.aux
+*.log
+*.synctex.gz
