@@ -9,6 +9,8 @@ net add link 2.0.0.3 1.0.0.3
 net add link 2.0.0.4 1.0.0.4
 net add link 2.0.0.3 3.0.0.1
 net add link 2.0.0.3 3.1.0.1
+net add link 3.0.0.2 3.1.0.1
+net add link 3.0.0.2 3.1.0.2
 net add link 1.0.0.1 4.0.0.2
 net add link 1.0.0.2 4.0.0.1
 net add link 1.0.0.3 4.0.0.1
@@ -42,6 +44,10 @@ net node 2.0.0.3 route add --oif=3.0.0.1 3.0.0.0/24 1
 net node 3.0.0.1 route add --oif=2.0.0.3 2.0.0.0/8 1
 net node 2.0.0.3 route add --oif=3.1.0.1 3.1.0.0/16 1
 net node 3.1.0.1 route add --oif=2.0.0.3 2.0.0.0/8 1
+net node 3.0.0.2 route add --oif=3.1.0.1 3.1.0.0/16 1
+net node 3.1.0.1 route add --oif=3.0.0.2 3.0.0.0/24 1
+net node 3.0.0.2 route add --oif=3.1.0.2 3.1.0.0/16 1
+net node 3.1.0.2 route add --oif=3.0.0.2 3.0.0.0/24 1
 net node 1.0.0.1 route add --oif=4.0.0.2 4.0.0.0/16 1
 net node 4.0.0.2 route add --oif=1.0.0.1 1.0.0.0/8 1
 net node 1.0.0.2 route add --oif=4.0.0.1 4.0.0.0/16 1
@@ -142,6 +148,22 @@ bgp router 2.0.0.3
 bgp router 3.1.0.1
     add peer 2 2.0.0.3
     peer 2.0.0.3 up
+    exit
+bgp router 3.0.0.2
+    add peer 52 3.1.0.1
+    peer 3.1.0.1 up
+    exit
+bgp router 3.1.0.1
+    add peer 11537 3.0.0.2
+    peer 3.0.0.2 up
+    exit
+bgp router 3.0.0.2
+    add peer 52 3.1.0.2
+    peer 3.1.0.2 up
+    exit
+bgp router 3.1.0.2
+    add peer 11537 3.0.0.2
+    peer 3.0.0.2 up
     exit
 bgp router 1.0.0.1
     add peer 20965 4.0.0.2
