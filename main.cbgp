@@ -1,4 +1,4 @@
 print 'Running main.cbgp\n'
 include config.cbgp
-include interroutes.cbgp
+include routes.cbgp
 include filters.cbgp
