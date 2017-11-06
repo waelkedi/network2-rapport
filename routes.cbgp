@@ -1,4 +1,4 @@
-print 'Running genroutes.cbgp\n'
+print 'Running routes.cbgp\n'
 
 net add link 2.1.0.1 2.0.0.1
 net add link 2.1.0.1 2.0.0.2
