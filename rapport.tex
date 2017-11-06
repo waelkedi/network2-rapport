@@ -1,6 +1,5 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage[frenchb]{babel}
 \usepackage{tcolorbox}
 \usepackage{tabularx}
 \usepackage{array}
@@ -95,6 +94,30 @@
 
 \subsection{Les stub}
 Pour les stub, aucun filtre est nécessaire en effet ceux-ci doivent annoncer toutes leurs routes vers leur providers.
-\subsection{}
+
+\subsection{Les autres}
+
+Pour les AS Spring, BigCarrier, GEANT, Abilene, nous avions éveiller qu'ils respectent les règles énoncer dans le cour. C'est régles est résumer par le tableau suivant:
+
+
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+De/Vers & Providers & Peer & Clients \\
+\hline
+ Providers & Non & Non & Oui \\
+\hline
+ Peer & Non & Non & Oui \\
+\hline
+  Clients & Oui & Oui & Oui \\
+\hline
+
+\end{tabular}
+
+
+Pour ce faire nous avions créé trois communautés, une pour les clients, une pour les peers et une pour les providers. Pour chaque liens entrant de chaqu'un des routeurs des AS, nous avions un filtre qui ajoute les routes à la bonne communauté.
+
+Et pour chaque lien sortant, nous avions ajouter un filtre qui ignore (deny) les routes venant des communautés providers et peers.
+Les routes venant des client ne sont jamais ignorer.
 
 \end{document}
