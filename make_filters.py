@@ -77,15 +77,13 @@ def make_filters(combinaisons):
     if c[7] == "0": # R1 client to R2
       s += filter_client(c[0], c[1])
       s += filter_provider(c[1], c[0])
-      s += "\n"
     elif c[7] == "2": # R1 provider to R2
       s += filter_client(c[1], c[0])
       s += filter_provider(c[0], c[1])
-      s += "\n"
     elif c[7] == "1": # pairs
       s += filter_peers(c[1], c[0])
       s += filter_peers(c[0], c[1])
-      s += "\n"
+    s += "\n"
   return s
 
 
