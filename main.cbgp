@@ -2,3 +2,5 @@ print 'Running main.cbgp\n'
 include config.cbgp
 include routes.cbgp
 include filters.cbgp
+
+sim run
