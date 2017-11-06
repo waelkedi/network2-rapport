@@ -280,7 +280,7 @@ bgp router 3.1.0.1
 		filter in add-rule
 			match any
 			action 'community add 2'
-			action 'local-pref 2'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -297,7 +297,7 @@ bgp router 3.0.0.2
 		filter in add-rule
 			match any
 			action 'community add 0'
-			action 'local-pref 100'
+			action 'local-pref 50'
 			exit
 		exit
 	exit
@@ -307,7 +307,7 @@ bgp router 3.1.0.2
 		filter in add-rule
 			match any
 			action 'community add 2'
-			action 'local-pref 2'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -324,7 +324,7 @@ bgp router 3.0.0.2
 		filter in add-rule
 			match any
 			action 'community add 0'
-			action 'local-pref 100'
+			action 'local-pref 50'
 			exit
 		exit
 	exit
@@ -442,7 +442,7 @@ bgp router 4.0.0.1
 		filter in add-rule
 			match any
 			action 'community add 1'
-			action 'local-pref 10'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -459,7 +459,7 @@ bgp router 3.0.0.1
 		filter in add-rule
 			match any
 			action 'community add 1'
-			action 'local-pref 10'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -477,7 +477,7 @@ bgp router 4.0.0.3
 		filter in add-rule
 			match any
 			action 'community add 1'
-			action 'local-pref 10'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -494,7 +494,7 @@ bgp router 3.0.0.3
 		filter in add-rule
 			match any
 			action 'community add 1'
-			action 'local-pref 10'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -512,7 +512,7 @@ bgp router 4.200.0.1
 		filter in add-rule
 			match any
 			action 'community add 2'
-			action 'local-pref 2'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -529,7 +529,7 @@ bgp router 3.0.0.3
 		filter in add-rule
 			match any
 			action 'community add 0'
-			action 'local-pref 100'
+			action 'local-pref 50'
 			exit
 		exit
 	exit
@@ -566,7 +566,7 @@ bgp router 1.1.0.1
 		filter in add-rule
 			match any
 			action 'community add 2'
-			action 'local-pref 2'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -583,7 +583,7 @@ bgp router 4.0.0.3
 		filter in add-rule
 			match any
 			action 'community add 0'
-			action 'local-pref 100'
+			action 'local-pref 50'
 			exit
 		exit
 	exit
@@ -593,7 +593,7 @@ bgp router 1.1.0.2
 		filter in add-rule
 			match any
 			action 'community add 2'
-			action 'local-pref 2'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -610,7 +610,7 @@ bgp router 4.0.0.4
 		filter in add-rule
 			match any
 			action 'community add 0'
-			action 'local-pref 100'
+			action 'local-pref 50'
 			exit
 		exit
 	exit
@@ -620,7 +620,7 @@ bgp router 130.104.0.1
 		filter in add-rule
 			match any
 			action 'community add 2'
-			action 'local-pref 2'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -637,7 +637,7 @@ bgp router 1.1.0.1
 		filter in add-rule
 			match any
 			action 'community add 0'
-			action 'local-pref 100'
+			action 'local-pref 50'
 			exit
 		exit
 	exit
@@ -647,7 +647,7 @@ bgp router 130.104.0.2
 		filter in add-rule
 			match any
 			action 'community add 2'
-			action 'local-pref 2'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -664,7 +664,7 @@ bgp router 1.1.0.2
 		filter in add-rule
 			match any
 			action 'community add 0'
-			action 'local-pref 100'
+			action 'local-pref 50'
 			exit
 		exit
 	exit
@@ -674,7 +674,7 @@ bgp router 139.165.0.1
 		filter in add-rule
 			match any
 			action 'community add 2'
-			action 'local-pref 2'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -691,7 +691,7 @@ bgp router 1.1.0.1
 		filter in add-rule
 			match any
 			action 'community add 0'
-			action 'local-pref 100'
+			action 'local-pref 50'
 			exit
 		exit
 	exit
@@ -701,7 +701,7 @@ bgp router 139.165.0.2
 		filter in add-rule
 			match any
 			action 'community add 2'
-			action 'local-pref 2'
+			action 'local-pref 50'
 			exit
 		filter out add-rule
 			match 'community is 1'
@@ -718,7 +718,7 @@ bgp router 1.1.0.2
 		filter in add-rule
 			match any
 			action 'community add 0'
-			action 'local-pref 100'
+			action 'local-pref 50'
 			exit
 		exit
 	exit
