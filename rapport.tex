@@ -89,18 +89,34 @@
 
 \maketitle
 
+\section{Structure}
+Nous avons un fichier main.cbgp qui appelle à tour de rôle :
+\begin{itemize}
+	\item config.cbgp, qui crée les noeuds et génère la topologie intra-domaine
+	\item genroutes.cbgp, qui crée statiquement les routes entre 2 AS, et initialise le protocole BGP sur les routeurs de bordure.
+	\item filterS.cbgp, qui défini les filtres en fonctions des politiques locales à respecter. 
+\end{itemize}
+
+\section{Les noeuds}
+
+Chaque router se voit attribuer une IP selon une règle simple : s'il est le router X dans le préfixe A.B.C.0, il aura l'adresse A.B.C.X. Cette règle simplifie l'interprétation du réseau au complet, ainsi que les tests.
+
+\section{Les routes statiques}
+
+Des routes statiques sont définies entre des domaines différents. Il y est notamment renseigné le next-hop et les adresses joignables par celle-ci. On part du principe que lorsqu'un lien est établi entre deux entité, elles ont au moins communiqué leur propre adresse au technicien concerné chez l'autre.
+
+
 
 \section{Les filtres}
 
 \subsection{Les stub}
-Pour les stub, aucun filtre est nécessaire en effet ceux-ci doivent annoncer toutes leurs routes vers leur providers.
+Pour les stub, aucun filtre est nécessaire. En effet, ceux-ci doivent annoncer toutes leurs routes vers leur providers.
 
 \subsection{Les autres}
-
-Pour les AS Spring, BigCarrier, GEANT, Abilene, nous avions éveiller qu'ils respectent les règles énoncer dans le cour. C'est régles est résumer par le tableau suivant:
-
+Pour les AS Spring, BigCarrier, GEANT, Abilene, nous avons veillé à ce qu'ils respectent les règles énoncées dans le cours. Ces règles sont résumées dans le tableau suivant:
 
 
+\begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 De/Vers & Providers & Peer & Clients \\
@@ -113,11 +129,23 @@ De/Vers & Providers & Peer & Clients \\
 \hline
 
 \end{tabular}
+\end{center}
+Pour ce faire nous avons créé trois communautés. Une pour les clients, une pour les peers et une pour les providers. Pour chaque lien entrant de chacun des routeurs des AS, nous avons un filtre qui ajoute les routes à la bonne communauté.
 
-Pour ce faire nous avions créé trois communautés, une pour les clients, une pour les peers et une pour les providers. Pour chaque liens entrant de chaqu'un des routeurs des AS, nous avions un filtre qui ajoute les routes à la bonne communauté.
 Et pour chaque lien sortant, nous avions ajouter un filtre qui ignore (deny) les routes venant des communautés providers et peers.
-Les routes venant des client ne sont jamais ignorer.
+Les routes venant des client ne sont jamais ignorées.
 
-Nous avions remarqué qu'un AS pouvait avoir une relation commerciale et une relation non commercial avec ses providers. Nous avions donc ajouté des préférences sur les liens entrant venant de providers non commerciale, car ceux-ci sont à préférer.
+Nous avons également remarqué qu'un AS pouvait avoir une relation commerciale et une relation non-commerciale avec différents providers. Nous avons donc ajouté des préférences sur les liens entrant venant de providers non-commerciaux. En effet, ceux-ci sont à préférer.
+
+\subsection{Local prefs}
+
+Dans certains cas, la même adresse peut avoir deux routes différentes. Une préférence local de 10 est attribuée au paires, contre 2 pour un provider. De cette façon, on préférera utiliser un lien à coût partagé qu'un lien pour lequel on paye plein pot.
+Une préférence de 100 est attribuée au routes venant d'un éventuel client assez maladroit pour communiquer ses routes.
+
+
+\section*{Difficultés rencontrées}
+La quantité de configuration et la très forte redondance de celle-ci représente un temps considérable d'écriture. Pour en limiter l'impact, nous avons écrit deux scripts en python générant la configuration globale de tiny internet.
+
+Certains ajustements sont cependant faits à la main sur la sortie de ces scripts.
 
 \end{document}
