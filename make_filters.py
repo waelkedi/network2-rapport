@@ -17,12 +17,12 @@ def filter_client(CLIENT_IP, PROVIDER_IP):
   s += "			exit\n" # exit filter
   # do not share routes from peers to provider
   s += "		filter out add-rule\n"
-  s += "			match 'community 1'\n"
+  s += "			match 'community is 1'\n"
   s += "			action deny\n"
   s += "			exit\n" # exit filter
   # do not share routes from providers to provider
   s += "		filter out add-rule\n"
-  s += "			match 'community 2'\n"
+  s += "			match 'community is 2'\n"
   s += "			action deny\n"
   s += "			exit\n" # exit filter
   s += "		exit\n" # exit peer
@@ -58,12 +58,12 @@ def filter_peers(PEER1_IP, PEER2_IP):
   s += "			exit\n" # exit filter
   # do not share routes from peers to peer
   s += "		filter out add-rule\n"
-  s += "			match 'community 1'\n"
+  s += "			match 'community is 1'\n"
   s += "			action deny\n"
   s += "			exit\n" # exit filter
   # do not share routes from providers to peer
   s += "		filter out add-rule\n"
-  s += "			match 'community 2'\n"
+  s += "			match 'community is 2'\n"
   s += "			action deny\n"
   s += "			exit\n" # exit filter
   s += "		exit\n" # exit peer
