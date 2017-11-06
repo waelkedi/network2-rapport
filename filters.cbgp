@@ -275,6 +275,60 @@ bgp router 2.0.0.3
 		exit
 	exit
 
+bgp router 3.1.0.1
+	peer 3.0.0.2
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community is 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community is 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 3.0.0.2
+	peer 3.1.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
+
+bgp router 3.1.0.2
+	peer 3.0.0.2
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community is 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community is 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 3.0.0.2
+	peer 3.1.0.2
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
+
 bgp router 4.0.0.2
 	peer 1.0.0.1
 		filter in add-rule
