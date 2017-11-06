@@ -130,12 +130,12 @@ De/Vers & Providers & Peer & Clients \\
 
 \end{tabular}
 \end{center}
-
-
 Pour ce faire nous avons créé trois communautés. Une pour les clients, une pour les peers et une pour les providers. Pour chaque lien entrant de chacun des routeurs des AS, nous avons un filtre qui ajoute les routes à la bonne communauté.
 
 Et pour chaque lien sortant, nous avions ajouter un filtre qui ignore (deny) les routes venant des communautés providers et peers.
-Les routes venant des client ne sont jamais ignorer.
+Les routes venant des client ne sont jamais ignorées.
+
+Nous avons également remarqué qu'un AS pouvait avoir une relation commerciale et une relation non-commerciale avec différents providers. Nous avons donc ajouté des préférences sur les liens entrant venant de providers non-commerciaux. En effet, ceux-ci sont à préférer.
 
 \subsection{Local prefs}
 
@@ -147,7 +147,5 @@ Une préférence de 100 est attribuée au routes venant d'un éventuel client as
 La quantité de configuration et la très forte redondance de celle-ci représente un temps considérable d'écriture. Pour en limiter l'impact, nous avons écrit deux scripts en python générant la configuration globale de tiny internet.
 
 Certains ajustements sont cependant faits à la main sur la sortie de ces scripts.
-
-
 
 \end{document}

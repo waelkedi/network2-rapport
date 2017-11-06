@@ -1,3 +1,5 @@
+print 'Running genroutes.cbgp\n'
+
 net add link 2.1.0.1 2.0.0.1
 net add link 2.1.0.1 2.0.0.2
 net add link 2.1.0.1 2.0.0.3
@@ -253,3 +255,5 @@ bgp router 139.165.0.2
     add peer 2611 1.1.0.2
     peer 1.1.0.2 up
     exit
+
+print 'END\n'

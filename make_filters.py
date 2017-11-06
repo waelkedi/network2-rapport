@@ -17,12 +17,12 @@ def filter_client(CLIENT_IP, PROVIDER_IP):
   s += "			exit\n" # exit filter
   # do not share routes from peers to provider
   s += "		filter out add-rule\n"
-  s += "			match 'community 1'\n"
+  s += "			match 'community is 1'\n"
   s += "			action deny\n"
   s += "			exit\n" # exit filter
   # do not share routes from providers to provider
   s += "		filter out add-rule\n"
-  s += "			match 'community 2'\n"
+  s += "			match 'community is 2'\n"
   s += "			action deny\n"
   s += "			exit\n" # exit filter
   s += "		exit\n" # exit peer
@@ -58,12 +58,12 @@ def filter_peers(PEER1_IP, PEER2_IP):
   s += "			exit\n" # exit filter
   # do not share routes from peers to peer
   s += "		filter out add-rule\n"
-  s += "			match 'community 1'\n"
+  s += "			match 'community is 1'\n"
   s += "			action deny\n"
   s += "			exit\n" # exit filter
   # do not share routes from providers to peer
   s += "		filter out add-rule\n"
-  s += "			match 'community 2'\n"
+  s += "			match 'community is 2'\n"
   s += "			action deny\n"
   s += "			exit\n" # exit filter
   s += "		exit\n" # exit peer
@@ -77,21 +77,21 @@ def make_filters(combinaisons):
     if c[7] == "0": # R1 client to R2
       s += filter_client(c[0], c[1])
       s += filter_provider(c[1], c[0])
-      s += "\n"
     elif c[7] == "2": # R1 provider to R2
       s += filter_client(c[1], c[0])
       s += filter_provider(c[0], c[1])
-      s += "\n"
     elif c[7] == "1": # pairs
       s += filter_peers(c[1], c[0])
       s += filter_peers(c[0], c[1])
-      s += "\n"
+    s += "\n"
   return s
 
 
 if __name__ == '__main__':
   from routesgen import combinaisons
   f = open('filters.cbgp', 'w')
+  f.write("print 'Running filters.cbgp\\n'\n\n")
   content = make_filters(combinaisons)
   f.write(content)
+  f.write("print 'END\\n'\n")
   f.close()
