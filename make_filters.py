@@ -88,7 +88,7 @@ def make_filters(combinaisons):
 
 
 if __name__ == '__main__':
-  from routesgen import combinaisons
+  from make_routes import combinaisons
   f = open('filters.cbgp', 'w')
   f.write("print 'Running filters.cbgp\\n'\n\n")
   content = make_filters(combinaisons)
