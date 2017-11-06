@@ -1,3 +1,5 @@
+print 'Running filters.cbgp\n'
+
 bgp router 2.1.0.1
 	peer 2.0.0.1
 		filter in add-rule
@@ -667,3 +669,4 @@ bgp router 1.1.0.2
 		exit
 	exit
 
+print 'END\n'
