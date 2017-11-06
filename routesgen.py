@@ -112,4 +112,5 @@ def genRoutes():
     return s
 
 
-print genRoutes()
+if __name__ == '__main__':
+  print genRoutes()
