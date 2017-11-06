@@ -114,7 +114,9 @@ def genRoutes():
 
 if __name__ == '__main__':
   from routesgen import combinaisons
-  f = open('genroutes.cbgp', 'w')
+  f = open('routes.cbgp', 'w')
+  f.write("print 'Running routes.cbgp\\n'\n\n")
   content = genRoutes()
   f.write(content)
+  f.write("print 'END\\n'\n")
   f.close()
