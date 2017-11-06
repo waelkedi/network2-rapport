@@ -4,7 +4,7 @@
 # 1: peer
 # 2: provider
 
-def filter_client(CLIENT_IP, PROVIDER_IP):
+def filter_client(CLIENT_IP, PROVIDER_IP, COMMERCIAL):
   s = ""
   # client router
   s += "bgp router "+CLIENT_IP+"\n"
@@ -13,7 +13,10 @@ def filter_client(CLIENT_IP, PROVIDER_IP):
   s += "		filter in add-rule\n"
   s += "			match any\n"
   s += "			action 'community add 2'\n"
-  s += "			action 'local-pref 2'\n"
+  if COMMERCIAL:
+    s += "			action 'local-pref 2'\n"
+  else:
+    s += "			action 'local-pref 50'\n"
   s += "			exit\n" # exit filter
   # do not share routes from peers to provider
   s += "		filter out add-rule\n"
@@ -30,7 +33,7 @@ def filter_client(CLIENT_IP, PROVIDER_IP):
   # return result
   return s
 
-def filter_provider(PROVIDER_IP, CLIENT_IP):
+def filter_provider(PROVIDER_IP, CLIENT_IP, COMMERCIAL):
   s = ""
   # provider router
   s += "bgp router "+PROVIDER_IP+"\n"
@@ -39,14 +42,17 @@ def filter_provider(PROVIDER_IP, CLIENT_IP):
   s += "		filter in add-rule\n"
   s += "			match any\n"
   s += "			action 'community add 0'\n"
-  s += "			action 'local-pref 100'\n"
+  if COMMERCIAL:
+    s += "			action 'local-pref 100'\n"
+  else:
+    s += "			action 'local-pref 50'\n"
   s += "			exit\n" # exit filter
   s += "		exit\n" # exit peer
   s += "	exit\n" # exit router
   # return result
   return s
 
-def filter_peers(PEER1_IP, PEER2_IP):
+def filter_peers(PEER1_IP, PEER2_IP, COMMERCIAL):
   s = ""
   s += "bgp router "+PEER1_IP+"\n"
   s += "	peer "+PEER2_IP+"\n"
@@ -54,7 +60,10 @@ def filter_peers(PEER1_IP, PEER2_IP):
   s += "		filter in add-rule\n"
   s += "			match any\n"
   s += "			action 'community add 1'\n"
-  s += "			action 'local-pref 10'\n"
+  if COMMERCIAL:
+    s += "			action 'local-pref 10'\n"
+  else:
+    s += "			action 'local-pref 50'\n"
   s += "			exit\n" # exit filter
   # do not share routes from peers to peer
   s += "		filter out add-rule\n"
@@ -75,14 +84,14 @@ def make_filters(combinaisons):
   for c in combinaisons:
     # check relation
     if c[7] == "0": # R1 client to R2
-      s += filter_client(c[0], c[1])
-      s += filter_provider(c[1], c[0])
+      s += filter_client(c[0], c[1], c[8])
+      s += filter_provider(c[1], c[0], c[8])
     elif c[7] == "2": # R1 provider to R2
-      s += filter_client(c[1], c[0])
-      s += filter_provider(c[0], c[1])
+      s += filter_client(c[1], c[0], c[8])
+      s += filter_provider(c[0], c[1], c[8])
     elif c[7] == "1": # pairs
-      s += filter_peers(c[1], c[0])
-      s += filter_peers(c[0], c[1])
+      s += filter_peers(c[1], c[0], c[8])
+      s += filter_peers(c[0], c[1], c[8])
     s += "\n"
   return s
 
