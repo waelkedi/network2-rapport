@@ -113,4 +113,8 @@ def genRoutes():
 
 
 if __name__ == '__main__':
-  print genRoutes()
+  from routesgen import combinaisons
+  f = open('genroutes.cbgp', 'w')
+  content = genRoutes()
+  f.write(content)
+  f.close()

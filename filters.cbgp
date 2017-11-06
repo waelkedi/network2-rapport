@@ -1,54 +1,669 @@
-#0 customer
-#1 peer
-#2 provider
+bgp router 2.1.0.1
+	peer 2.0.0.1
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 2.0.0.1
+	peer 2.1.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
 
-print 'Running filters.cbgp\n'
+bgp router 2.1.0.1
+	peer 2.0.0.2
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 2.0.0.2
+	peer 2.1.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
 
-print 'No Config for stubs : UCL, ULg, iCompany.\n'
+bgp router 2.1.0.1
+	peer 2.0.0.3
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 2.0.0.3
+	peer 2.1.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
 
-print 'Configuring BELNET\n'
-print 'R1\n'
+bgp router 1.0.0.1
+	peer 2.0.0.1
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 2.0.0.1
+	peer 1.0.0.1
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+
+bgp router 1.0.0.2
+	peer 2.0.0.2
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 2.0.0.2
+	peer 1.0.0.2
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+
+bgp router 1.0.0.3
+	peer 2.0.0.3
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 2.0.0.3
+	peer 1.0.0.3
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+
+bgp router 1.0.0.4
+	peer 2.0.0.4
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 2.0.0.4
+	peer 1.0.0.4
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+
+bgp router 3.0.0.1
+	peer 2.0.0.3
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 2.0.0.3
+	peer 3.0.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
+
+bgp router 3.1.0.1
+	peer 2.0.0.3
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 2.0.0.3
+	peer 3.1.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
+
+bgp router 4.0.0.2
+	peer 1.0.0.1
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 1.0.0.1
+	peer 4.0.0.2
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
+
+bgp router 4.0.0.1
+	peer 1.0.0.2
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 1.0.0.2
+	peer 4.0.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
+
+bgp router 4.0.0.1
+	peer 1.0.0.3
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 1.0.0.3
+	peer 4.0.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
+
+bgp router 1.1.0.2
+	peer 1.0.0.2
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 1.0.0.2
+	peer 1.1.0.2
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
+
+bgp router 4.0.0.1
+	peer 3.0.0.1
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 3.0.0.1
+	peer 4.0.0.1
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+
+bgp router 4.0.0.3
+	peer 3.0.0.3
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 3.0.0.3
+	peer 4.0.0.3
+		filter in add-rule
+			match any
+			action 'community add 1'
+			action 'local-pref 10'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+
+bgp router 4.200.0.1
+	peer 3.0.0.3
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 3.0.0.3
+	peer 4.200.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
+
+bgp router 4.200.0.1
+	peer 4.0.0.3
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 4.0.0.3
+	peer 4.200.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
+
 bgp router 1.1.0.1
 	peer 4.0.0.3
 		filter in add-rule
 			match any
-			action "community add 2"
-		exit
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
 		filter out add-rule
-			match "community is 2"
+			match 'community 1'
 			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
 		exit
 	exit
-exit
-print 'R2\n'
+bgp router 4.0.0.3
+	peer 1.1.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
+
 bgp router 1.1.0.2
 	peer 4.0.0.4
 		filter in add-rule
 			match any
-			action "community add 2"
-		exit
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
 		filter out add-rule
-			match "community is 2"
+			match 'community 1'
 			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
 		exit
 	exit
-	peer 1.0.0.2
+bgp router 4.0.0.4
+	peer 1.1.0.2
 		filter in add-rule
 			match any
-			action "community add 2"
-		exit
-		filter out add-rule
-			match "community is 2"
-			action deny
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
 		exit
 	exit
-exit
 
-print 'Configuring GEANT\n'
+bgp router 130.104.0.1
+	peer 1.1.0.1
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 1.1.0.1
+	peer 130.104.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
 
-print 'Configuring Abilene\n'
+bgp router 130.104.0.2
+	peer 1.1.0.2
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 1.1.0.2
+	peer 130.104.0.2
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
 
-print 'Configuring BigCarrier\n'
+bgp router 139.165.0.1
+	peer 1.1.0.1
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 1.1.0.1
+	peer 139.165.0.1
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
 
-print 'Configuring Spring\n'
+bgp router 139.165.0.2
+	peer 1.1.0.2
+		filter in add-rule
+			match any
+			action 'community add 2'
+			action 'local-pref 2'
+			exit
+		filter out add-rule
+			match 'community 1'
+			action deny
+			exit
+		filter out add-rule
+			match 'community 2'
+			action deny
+			exit
+		exit
+	exit
+bgp router 1.1.0.2
+	peer 139.165.0.2
+		filter in add-rule
+			match any
+			action 'community add 0'
+			action 'local-pref 100'
+			exit
+		exit
+	exit
 
