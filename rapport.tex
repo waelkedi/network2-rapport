@@ -114,10 +114,10 @@ De/Vers & Providers & Peer & Clients \\
 
 \end{tabular}
 
-
 Pour ce faire nous avions créé trois communautés, une pour les clients, une pour les peers et une pour les providers. Pour chaque liens entrant de chaqu'un des routeurs des AS, nous avions un filtre qui ajoute les routes à la bonne communauté.
-
 Et pour chaque lien sortant, nous avions ajouter un filtre qui ignore (deny) les routes venant des communautés providers et peers.
 Les routes venant des client ne sont jamais ignorer.
+
+Nous avions remarqué qu'un AS pouvait avoir une relation commerciale et une relation non commercial avec ses providers. Nous avions donc ajouté des préférences sur les liens entrant venant de providers non commerciale, car ceux-ci sont à préférer.
 
 \end{document}
