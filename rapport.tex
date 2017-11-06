@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[frenchb]{babel}
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+\tcbuselibrary{skins}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+
+
+
+%------------ NICE TABS ----------%
+\tcbset{note/.style={enhanced,fonttitle=\bfseries,fontupper=\normalsize\sffamily,
+		colback=lime!20!white,colframe=lime!50!black}}
+
+\tcbset{question/.style={enhanced,fonttitle=\bfseries,fontupper=\normalsize\sffamily,
+		colback=teal!20!white,colframe=teal!50!black}}
+
+\tcbset{attention/.style={enhanced,fonttitle=\bfseries,fontupper=\normalsize\sffamily,
+		colback=red!20!white,colframe=red!50!black}}
+
+
+%------------- MY ENVS --------%
+\newcounter{note}[section]
+\newenvironment{note}[1][]
+{
+
+	\refstepcounter{note}
+
+
+
+	\begin{center}
+		\begin{tcolorbox}[note]
+			\textbf{\textcolor{lime!30!black}{Note \arabic{section}.\arabic{note}}} :
+			\begin{em}
+			}
+			{
+			\end{em}
+		\end{tcolorbox}
+	\end{center}
+}
+
+
+
+\newcounter{question}[section]
+\newenvironment{question}[1][]
+{
+
+	\refstepcounter{question}
+
+
+
+	\begin{center}
+		\begin{tcolorbox}[question]
+			\textbf{\textcolor{teal}{Question \arabic{section}.\arabic{question}}} :
+		}
+		{
+		\end{tcolorbox}
+	\end{center}
+}
+
+
+\newcounter{attention}[section]
+\newenvironment{attention}[1][]
+{
+
+	\refstepcounter{attention}
+
+
+
+	\begin{center}
+		\begin{tcolorbox}[attention]
+			\textbf{\textcolor{red}{Attention \arabic{section}.\arabic{attention}}} :
+			\begin{bf}
+			}
+			{
+			\end{bf}
+		\end{tcolorbox}
+	\end{center}
+}
+
+\author{Benjamin André\\Alexis Lecocq\\Waelkens Dimitri}
+\title{Rapport de TP : CISCO}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\section{Les filtres}
+
+\subsection{Les stub}
+Pour les stub, aucun filtre est nécessaire en effet ceux-ci doivent annoncer toutes leurs routes vers leur providers.
+\subsection{}
+
+\end{document}
