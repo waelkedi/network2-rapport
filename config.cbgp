@@ -33,6 +33,10 @@ bgp add router 2 2.0.0.1
 bgp add router 2 2.0.0.2
 bgp add router 2 2.0.0.3
 bgp add router 2 2.0.0.4
+bgp router 2.0.0.1 add network 2.0.0.0/8
+bgp router 2.0.0.2 add network 2.0.0.0/8
+bgp router 2.0.0.3 add network 2.0.0.0/8
+bgp router 2.0.0.4 add network 2.0.0.0/8
 
 
 print 'BigCarrier 1.0.0.0/8 ASN1\n'
@@ -58,6 +62,10 @@ bgp add router 1 1.0.0.1
 bgp add router 1 1.0.0.2
 bgp add router 1 1.0.0.3
 bgp add router 1 1.0.0.4
+bgp router 1.0.0.1 add network 1.0.0.0/8
+bgp router 1.0.0.2 add network 1.0.0.0/8
+bgp router 1.0.0.3 add network 1.0.0.0/8
+bgp router 1.0.0.4 add network 1.0.0.0/8
 
 
 
@@ -78,7 +86,10 @@ net link 3.0.0.2 3.0.0.3 igp-weight --bidir 50
 net domain 11537 compute
 bgp add router 11537 3.0.0.1
 bgp add router 11537 3.0.0.2
-bgp add router 11537 3.0.0.3
+bgp add router 11537 3.0.0.3         
+bgp router 3.0.0.1 add network 3.0.0.0/24
+bgp router 3.0.0.2 add network 3.0.0.0/24
+bgp router 3.0.0.3 add network 3.0.0.0/24
 
 
 
@@ -105,9 +116,12 @@ net link 4.0.0.1 4.0.0.4 igp-weight --bidir 12
 net domain 20965 compute
 bgp add router 20965 4.0.0.1
 bgp add router 20965 4.0.0.2
-bgp add router 20965 4.0.0.3 
-bgp router 4.0.0.3 add network 4.0.0.0/24
+bgp add router 20965 4.0.0.3
 bgp add router 20965 4.0.0.4
+bgp router 4.0.0.1 add network 4.0.0.0/24
+bgp router 4.0.0.2 add network 4.0.0.0/24
+bgp router 4.0.0.3 add network 4.0.0.0/24
+bgp router 4.0.0.4 add network 4.0.0.0/24
 
 
 print 'UCLA 3.1.0.0/16 ASN52\n'
@@ -121,6 +135,8 @@ net link 3.1.0.1 3.1.0.2 igp-weight --bidir 10
 net domain 52 compute
 bgp add router 52 3.1.0.1
 bgp add router 52 3.1.0.2
+bgp router 3.1.0.1 add network 3.1.0.0/16
+bgp router 3.1.0.2 add network 3.1.0.0/16
 
 
 print 'CERN 4.200.0.0/16 201\n'
@@ -129,6 +145,7 @@ net add domain 201 igp
 net node 4.200.0.1 domain 201
 net domain 201 compute
 bgp add router 201 4.200.0.1
+bgp router 4.200.0.1 add network 4.200.0.0/16
 
 print 'BELNET 1.1.0.0/24 4.1.0.0/24 ASN2611\n'
 net add node 1.1.0.1
@@ -140,8 +157,9 @@ net add link 1.1.0.1 1.1.0.2
 net link 1.1.0.1 1.1.0.2 igp-weight --bidir 10
 net domain 2611 compute
 bgp add router 2611 1.1.0.1
-bgp router 1.1.0.1 add network 1.1.0.0/24
 bgp add router 2611 1.1.0.2
+bgp router 1.1.0.1 add network 1.1.0.0/24
+bgp router 1.1.0.2 add network 1.1.0.0/24
 
 print 'UCL 130.104.0.0/16 ASN65535\n'
 net add node 130.104.0.1
@@ -154,6 +172,8 @@ net link 130.104.0.1 130.104.0.2 igp-weight --bidir 10
 net domain 65535 compute
 bgp add router 65535 130.104.0.1
 bgp add router 65535 130.104.0.2
+bgp router 130.104.0.1 add network 130.104.0.0/16
+bgp router 130.104.0.2 add network 130.104.0.0/16
 
 
 
@@ -166,8 +186,7 @@ net node 139.165.0.2 domain 65534
 net domain 65534 compute
 bgp add router 65534 139.165.0.1
 bgp add router 65534 139.165.0.2
-
-
-net node 1.0.0.1 ping 1.0.0.3
+bgp router 139.165.0.1 add network 139.165.0.0/16
+bgp router 139.165.0.2 add network 139.165.0.0/16
 
 print 'END\n'
